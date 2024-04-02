@@ -1,20 +1,24 @@
 <script setup>
-
+import { onMounted, ref } from 'vue';
+import HomePanel from './HomePanel.vue'
+import {findNewAPI} from '@/apis/home.js'
+const newList = ref([])
+const getNewList = async () => newList.value = (await findNewAPI()).value.result
+onMounted(getNewList)
 </script>
 
 <template>
-  <div></div>
-  <!-- 下面是插槽主体内容模版
-  <ul class="goods-list">
-    <li v-for="item in newList" :key="item.id">
-      <RouterLink to="/">
-        <img :src="item.picture" alt="" />
-        <p class="name">{{ item.name }}</p>
-        <p class="price">&yen;{{ item.price }}</p>
-      </RouterLink>
-    </li>
-  </ul>
-  -->
+  <HomePanel title="新鲜好物" sub-title="新鲜出炉 品质靠谱">
+    <ul class="goods-list">
+        <li v-for="item in newList" :key="item.id">
+        <RouterLink to="/">
+            <img :src="item.picture" alt="" />
+            <p class="name">{{ item.name }}</p>
+            <p class="price">&yen;{{ item.price }}</p>
+        </RouterLink>
+        </li>
+    </ul>
+  </HomePanel>
 </template>
 
 

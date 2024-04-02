@@ -18,9 +18,7 @@ const skuChange = (sku) => {
   skuObj = sku
 }
 const count = ref(1)
-const countChange = count => {
-
-}
+const countChange = count => count
 const addCart = () => {
   if (skuObj.skuId) cartStore.addCart({
     id: goods.value.id,

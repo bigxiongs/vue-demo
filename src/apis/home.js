@@ -4,4 +4,3 @@ export const getBannerAPI = (params = {distributionSite: '1'}) => axios.get('/ho
 export const findNewAPI = () => axios.get('/home/new')
 export const getHotAPI = () => axios.get('/home/hot')
 export const getGoodsAPI = () => axios.get('/home/goods')
-

@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useUserStore } from './user.js'
-import {insertCartAPI, findNewCartListAPI, delCartAPI} from '@/apis/cart.js'
+import {insertCartAPI, findNewCartListAPI, delCartAPI, mergeCartAPI} from '@/apis/cart.js'
 
 const isSelected = item => item.selected
 const acc = (a, c) => a + c.count
@@ -34,5 +34,8 @@ export const useCartStore = defineStore('cart', () => {
     const selected = computed(() => cartList.value.filter(isSelected).reduce(acc, 0))
     const pay = computed(() => cartList.value.filter(isSelected).reduce(accPrice, 0))
 
-    return { cartList, addCart, delCart, count, price, singleClick, allSelected, selectAll, selected, pay }
+    const clear = () => cartList.value = []
+    const mergeCart = async () => {await mergeCartAPI(cartList.value.map(i => {i.skuId, i.selected, i.count})); await refresh()}
+
+    return { cartList, addCart, delCart, count, price, singleClick, allSelected, selectAll, selected, pay, clear, mergeCart }
 }, { persist: true, })

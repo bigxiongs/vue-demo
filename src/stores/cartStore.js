@@ -37,5 +37,5 @@ export const useCartStore = defineStore('cart', () => {
     const clear = () => cartList.value = []
     const mergeCart = async () => {await mergeCartAPI(cartList.value.map(i => {i.skuId, i.selected, i.count})); await refresh()}
 
-    return { cartList, addCart, delCart, count, price, singleClick, allSelected, selectAll, selected, pay, clear, mergeCart }
+    return { cartList, addCart, delCart, count, price, singleClick, allSelected, selectAll, selected, pay, clear, mergeCart, refresh }
 }, { persist: true, })

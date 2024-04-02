@@ -4,16 +4,14 @@
       <dt>{{ item.name }}</dt>
       <dd>
         <template v-for="val in item.values" :key="val.name">
-          <img :class="{ selected: val.selected, disabled: val.disabled }" @click="clickSpecs(item, val)"
-            v-if="val.picture" :src="val.picture" />
-          <span :class="{ selected: val.selected, disabled: val.disabled }" @click="clickSpecs(item, val)" v-else>{{
-              val.name
-          }}</span>
+          <img :class="{ selected: val.selected, disabled: val.disabled }" @click="clickSpecs(item, val)" v-if="val.picture" :src="val.picture" />
+          <span :class="{ selected: val.selected, disabled: val.disabled }" @click="clickSpecs(item, val)" v-else>{{val.name}}</span>
         </template>
       </dd>
     </dl>
   </div>
 </template>
+
 <script>
 import { watchEffect } from 'vue'
 import getPowerSet from './power-set'
